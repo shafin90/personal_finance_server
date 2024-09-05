@@ -1,11 +1,15 @@
 const express = require("express");
 const app = express();
-const cors = require("cors")
+const cors = require("cors");
+const { connectToDB } = require("./utilityFundtions/connectToDB");
 require("dotenv").config();
 const port = process.env.PORT;
 
 // middleware
 app.use(cors())
+
+// connect to database
+connectToDB()
 
 app.get("/", async (req, res) => {
     try {
