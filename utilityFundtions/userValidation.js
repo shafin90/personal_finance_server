@@ -1,5 +1,4 @@
 const userValidation = (password, confirmPassword, email) => {
-
     if (password !== confirmPassword) {
         return {
             success: false,
@@ -12,10 +11,16 @@ const userValidation = (password, confirmPassword, email) => {
             message: "Password must be atleast 6 character"
         }
     }
-    else if (!email.include("@")) {
+    else if (!/@/.test(email)) {
         return {
             success: false,
             message: "Email format is incorrect"
+        }
+    }
+    else{
+        return {
+            success: true,
+            message: "There is no issue"
         }
     }
 }

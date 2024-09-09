@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const costSchema = new mongoose.Schema({
-    amout: {
+    amount: {
         type: Number
     },
     source: {
@@ -11,9 +11,12 @@ const costSchema = new mongoose.Schema({
     },
     name: {
         type: String
+    },
+    personalTarget: {
+        type: Number
     }
 })
 
-const COST = mongoose.model("COST", costSchema)
+const Cost = mongoose.model("Cost", costSchema)
 
-module.exports = { COST }
+module.exports = { Cost }

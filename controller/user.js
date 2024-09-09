@@ -8,10 +8,12 @@ const { userValidation } = require("../utilityFundtions/userValidation");
 const user = {
     register: async (req, res) => {
         try {
+            console.log(req.body)
             const { name, email, password, confirmPassword } = req.body;
-
+            console.log(1)
             // validate user
             const { success, message } = userValidation(password, confirmPassword, email);
+            
             if (!success) {
                 return res.json({
                     message
@@ -85,6 +87,7 @@ const user = {
         } catch (error) {
             res.json({
                 success: false,
+                error,
                 message: "Login failed"
             })
         }
