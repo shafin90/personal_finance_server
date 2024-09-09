@@ -5,6 +5,7 @@ const { connectToDB } = require("./utilityFundtions/connectToDB");
 require("dotenv").config();
 const port = process.env.PORT;
 
+
 // middleware
 app.use(cors())
 
