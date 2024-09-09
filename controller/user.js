@@ -46,6 +46,16 @@ const user = {
                 messsage: "Failed to add user"
             })
         }
+    },
+    login: async (req, res) => {
+        try {
+
+        } catch (error) {
+            res.json({
+                success: false,
+                message: "Login failed"
+            })
+        }
     }
 }
 
