@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const familySchema = new mongoose.Schema({
-    family: [
+    familyMembers: [
         {
             name: String,
             email: String,
