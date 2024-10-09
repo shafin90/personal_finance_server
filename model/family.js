@@ -5,13 +5,14 @@ const familySchema = new mongoose.Schema({
         {
             name: String,
             email: String,
-            id: String,
+            userName: String,
             password: String
         }
     ],
-    familyname: String,
+    familyName: String,
     familyId: String,
-    familyTarget: Number
+    familyCostTargetPerMonth: Number, 
+    familyCostPerMonth: Number
 })
 
 const Family = mongoose.model("Family", familySchema)

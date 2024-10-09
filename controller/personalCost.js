@@ -43,7 +43,7 @@ const personalCost = {
     },
     addCost: async (req, res) => {
         try {
-            const { amount, source } = req.body;
+            const { amount, source, myUserName } = req.body;
 
             // creating new cost
             const newCost = {
@@ -54,7 +54,7 @@ const personalCost = {
             }
 
             const updating = await User.findOneAndUpdate(
-                { id: id },
+                { userName: myUserName },
                 { $push: { personalCost: newCost } },
                 { new: true }
             )
@@ -81,14 +81,14 @@ const personalCost = {
     updateCost: async (req, res) => {
         try {
             const { userId, costId, amount, source } = req.body;
-    
+
             if (isNaN(amount)) {
                 return res.json({
                     success: false,
                     message: "Provide a valid number for amount"
                 });
             }
-    
+
             const updating = await User.findOneAndUpdate(
                 { id: userId, "personalCost.id": costId },
                 {
@@ -100,19 +100,19 @@ const personalCost = {
                 },
                 { new: true }
             );
-    
+
             if (!updating) {
                 return res.json({
                     success: false,
                     message: "Failed to update cost"
                 });
             }
-    
+
             res.json({
                 success: true,
                 message: "Successfully updated cost"
             });
-    
+
         } catch (error) {
             res.json({
                 success: false,
@@ -121,30 +121,30 @@ const personalCost = {
             });
         }
     },
-    
+
     deleteCost: async (req, res) => {
         try {
             const userId = req.params.id;
             const costId = req.params.costId;
-    
+
             const updating = await User.findOneAndUpdate(
                 { id: userId },
                 { $pull: { personalCost: { id: costId } } },
                 { new: true }
             );
-    
+
             if (!updating) {
                 return res.json({
                     success: false,
                     message: "Failed to delete cost"
                 });
             }
-    
+
             res.json({
                 success: true,
                 message: "Successfully deleted cost"
             });
-    
+
         } catch (error) {
             res.json({
                 success: false,
@@ -153,7 +153,7 @@ const personalCost = {
             });
         }
     },
-    
+
 
 }
 
